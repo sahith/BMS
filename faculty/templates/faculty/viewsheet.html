@@ -1,0 +1,31 @@
+{% extends 'faculty/base.html' %}
+{% block title %}Attendance{% endblock %}
+{% block body %}
+    <div class="container">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Student Id</th>
+                    <th>Username</th>
+                </tr>
+            </thead>
+            <tbody>
+             {% if messages %}
+                 <h3 class="text-danger">{{ messages }}</h3>
+             {% else%}
+                                    &nbsp;
+             {% endif %}
+    {% for i in sheet %}
+        {% for j in students %}
+            {% if i.sid == j.studid %}
+                <tr>
+                    <td> {{ i.sid }}</td>
+                    <td>{{ j.username }}</td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

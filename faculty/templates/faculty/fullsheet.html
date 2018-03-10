@@ -1,0 +1,55 @@
+{% extends 'faculty/base.html' %}
+{% block title %}Full Attendance Sheet{% endblock %}
+{% block body %}
+    <div class="container">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th><h3>Student Id</h3></th>
+                    <th><h3>Username</h3></th>
+                    <th><h3>Percentage</h3></th>
+                </tr>
+            </thead>
+            <tbody>
+             {% if messages %}
+                 <h4 class="text-danger">{{ messages }}</h4>
+             {% else%}
+                                    &nbsp;
+             {% endif %}
+            {% for i in s1 %}
+              {% for key,value in dict.items %}
+                  {% if key == i.studentid.studid %}
+                      {% if value < 75 %}
+                <tr class="danger">
+                    <td>
+                        <h4>{{ i.studentid.studid }}</h4>
+                    </td>
+                    <td>
+                        <h4>{{ i.studentid.username }}</h4>
+                    </td>
+                    <td >
+
+                        <h4>{{ value }}</h4>
+                    </td>
+                </tr>
+                      {% else %}
+                          <tr>
+                            <td>
+                                <h4>{{ i.studentid.studid }}</h4>
+                            </td>
+                            <td>
+                                <h4>{{ i.studentid.username }}</h4>
+                            </td>
+                            <td >
+
+                                                <h4>{{ value }}</h4>
+                            </td>
+                          </tr>
+                                    {% endif %}
+                                {% endif %}
+                                {% endfor %}
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

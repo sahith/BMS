@@ -1,0 +1,160 @@
+{% extends 'adminstrator/base.html' %}
+{% block title %}Admin Home{% endblock %}
+{% block body %}
+    <h1>Welcome admin!</h1><br>
+        <div class="col-md-11 ">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                        Pending Faculty Approvals
+            </div>
+            <div class="panel-body">
+                <div class="container">
+                {% if error %}
+                    <h3 class="text-danger">{{ error }}</h3>
+                {% else%}
+                                    &nbsp;
+                {% endif %}
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Faculty Name</th>
+            <th>Course</th>
+            <th>Faculty Id</th>
+              <th>Approval</th>
+              <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for register in registers %}
+                <form class="form-horizontal" role="form"  action="{% url 'adminstrator:fapproval' %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <fieldset>
+                          <tr>
+                            <td>
+                                   {{ register.username }}
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                       <input type="text" class="form-control" value="{{ register.course }}" id="course" name="course" />
+                                </div>
+                            </td>
+                            <td>
+                                  <div class="form-group">
+                                      <input type="number" class="form-control" value="-1" id="fid" name="fid"  />
+                                  </div>
+                            </td>
+                              <td>
+                                    <div class="form-group">
+                                        <input type="radio" name="status" value="approve" checked="checked">
+                                            Approve
+                                        </input>
+                                    </div>
+                              </td>
+                              <td>
+                                    <div class="form-group">
+                                        <input type="radio" name="status" value="delete">
+                                            Delete
+                                        </input>
+                                    </div>
+                              </td>
+                              <td>
+                                  <div class="form-group">
+                                    <div class="col-md-8 col-md-offset-5">
+                                        <button type="submit" class="btn btn-primary">
+                                            Apply
+                                        </button>
+                                     </div>
+                                  </div>
+                              </td>
+                          </tr>
+                        </fieldset>
+                </form>
+                {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    </div>
+        </div>
+    </div>
+
+    <div class="col-md-11 ">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                        Pending Student Approvals
+            </div>
+            <div class="panel-body">
+                <div class="container">
+                {% if error_messages %}
+                    <h3 class="text-danger">{{ error_messages }}</h3>
+                {% else%}
+                                    &nbsp;
+                {% endif %}
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Student Name</th>
+            <th>Bluetooth Address</th>
+            <th>Student Id</th>
+              <th>Courses</th>
+              <th>Approval</th>
+              <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+                <form class="form-horizontal" role="form"  action="{% url 'adminstrator:sapproval' %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <fieldset>
+                          <tr>
+                            <td>
+                                   {{ student.username }}
+                            </td>
+                              <td>
+                                   {{ student.bluetooth_addr }}
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                       <input type="number" class="form-control" value="{{ student.studid }}" id="sid" name="sid" />
+                                </div>
+                            </td>
+                            <td>
+                                  {% for i in courses %}
+                                      {% if i.studentid == student %}
+                                          {{ i.course }}
+                                      {% endif %}
+                                      {% endfor %}
+                            </td>
+                              <td>
+                                    <div class="form-group">
+                                        <input type="radio" name="status" value="approve" checked="checked">
+                                            Approve
+                                        </input>
+                                    </div>
+                              </td>
+                              <td>
+                                    <div class="form-group">
+                                        <input type="radio" name="status" value="delete">
+                                            Delete
+                                        </input>
+                                    </div>
+                              </td>
+                              <td>
+                                  <div class="form-group">
+                                    <div class="col-md-8 col-md-offset-5">
+                                        <button type="submit" class="btn btn-primary">
+                                            Apply
+                                        </button>
+                                     </div>
+                                  </div>
+                              </td>
+                          </tr>
+                        </fieldset>
+                </form>
+                {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% block title %}Bluetooth Management System{% endblock %}
+{% block bodyid %}
+page-top
+{% endblock %}
+{% block navbar %}
+{% endblock %}
+{% block body %}
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll active" href="{% url 'home' %}">Home</a>
+                <a class="navbar-brand page-scroll" href="{% url 'adminstrator:home' %}">Admin</a>
+                <a class="navbar-brand page-scroll" href="{% url 'faculty:flogin' %}">Professor</a>
+                <a class="navbar-brand page-scroll" href="{% url 'student:slogin' %}">Student</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a class="page-scroll" href="#about">About</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#features">Features</a>
+                    </li>
+
+                    <li>
+                        <a class="page-scroll" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <header>
+        <div class="header-content">
+            <div class="header-content-inner">
+                <h1 id="homeHeading">Bluetooth Attendance System</h1>
+                <hr>
+                <p>Bluetooth Attendance System helps professors to take attendance efficiently and quickly. Register yourself and then it is just one click away!</p>
+                <a href="#about" class="btn btn-primary btn-xl page-scroll">Learn More</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="bg-primary" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <h2 class="section-heading">We've got what you need!</h2>
+                    <hr class="light">
+                    <p class="text-faded">All you need to do is register students using their MAC addresses and then it would take only 30 secs!!</p>
+                    <a href="#services" class="page-scroll btn btn-default btn-xl sr-button">Get Started!</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Features</h2>
+                    <hr class="primary">
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-diamond text-primary sr-icons"></i>
+                        <h3>Registration</h3>
+                        <p class="text-muted">Fill in the details of student and link them with their MAC addresses.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-paper-plane text-primary sr-icons"></i>
+                        <h3>Take Attendance</h3>
+                        <p class="text-muted">Taking attendance is just one click away!</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-newspaper-o text-primary sr-icons"></i>
+                        <h3>Check Attendance</h3>
+                        <p class="text-muted">Students can check their attendance anytime.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-heart text-primary sr-icons"></i>
+                        <h3>Everything is classified</h3>
+                        <p class="text-muted">Students are classified based on their year and course.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    <section id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <h2 class="section-heading">Help us improve!</h2>
+                    <hr class="primary">
+                    <p>Send us your valuable suggestions and your feedback. We'll be more than happy to improve.</p>
+                </div>
+                <div class="col-lg-4 col-lg-offset-2 text-center">
+                    <i class="fa fa-phone fa-3x sr-contact"></i>
+                    <p>+91-8600376573</p>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <i class="fa fa-envelope-o fa-3x sr-contact"></i>
+                    <p><a href="mailto:your-email@your-domain.com">dreambuilders3719@yahoo.com</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+

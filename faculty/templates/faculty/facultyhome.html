@@ -1,0 +1,37 @@
+{% extends 'faculty/base.html' %}
+{% block title %}Faculty Home{% endblock %}
+{% block body %}
+    <h1>Welcome {{ register }}</h1>
+    <br>
+    <h3 style="color: #d43f3a ">
+        <div class="col-md-offset-4">
+            Number of Students Enrolled for your Course: {{ s.count }}
+        </div>
+    </h3>
+    <br>
+    &nbsp;<form class="form-horizontal" role="form" action="{% url 'faculty:attendance' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+           &nbsp;&nbsp;<button type="submit" class="btn">Take Attendance</button>
+        </div>
+    </form>
+    <br>
+    <form class="form-horizontal" role="form" action="{% url 'faculty:sheet' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <button type="submit" class="btn">View Attendance Sheet</button>
+    </form>
+    <br>
+    <br>
+    <form class="form-horizontal" role="form" action="{% url 'faculty:editsheet' %}"  method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <button type="submit" class="btn">Edit Attendance sheet</button>
+    </form>
+    <br>
+    <br>
+    <form class="form-horizontal" role="form" action="{% url 'faculty:fullsheet' %}"  method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <button type="submit" class="btn">View whole Attendance sheet</button>
+    </form>
+
+
+{% endblock %}

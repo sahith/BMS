@@ -1,0 +1,55 @@
+{% extends 'faculty/base.html' %}
+{% block title %}Attendance Sheet{% endblock %}
+{% block head %}
+
+{% endblock %}
+{% block body %}
+<div class="col-md-5 col-md-offset-3">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Edit Sheet
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal" role="form" action="{% url 'faculty:view' %}"  method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <fieldset>
+                        <div class="form-group">
+                            <div class="col-md-offset-2">
+                                {% if error %}
+                                    <h3 class="text-danger">{{ error }}</h3>
+                                {% else%}
+                                    &nbsp;
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox col-md-offset-3">
+                                {% for key,value in pdict.items %}
+                                    <h4><label><input type="checkbox" class="check" value="{{ key }}"  name="sid" checked="checked" >{{ key }} - {{ value }}</label></h4><br>
+                                {% endfor %}
+                                {% for key,value in dict.items %}
+                                    <h4><label><input type="checkbox" class="check" value="{{ key }}"  name="sid">{{ key }} - {{ value }}</label></h4><br>
+                                {% endfor %}
+                                    <h4><label><input type="checkbox" class="check" id="checkAll">Check All</label></h4>
+                            <br>
+                            </div>
+                        </div>
+                         <div class="form-group">
+                            <div class="col-md-8 col-md-offset-5">
+                                <button type="submit" class="btn btn-primary">
+                                    Edit
+                                </button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+   <script>
+        $("#checkAll").click(function ()
+        {
+        $(".check").prop('checked', $(this).prop('checked'));
+        });
+    </script>
+{% endblock %}

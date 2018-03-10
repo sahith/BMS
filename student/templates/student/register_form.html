@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% block title %}Register{% endblock %}
+{% block navbar %}
+    <nav id="mainNav" class="navbar navbar-inverse ">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="btn-primary navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="{% url 'home' %}">Home</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="{% url 'student:home' %}" >
+                             Register
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="{% url 'student:slogin' %}" >
+                            <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp; Login
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+{% endblock %}
+{% block body %}
+ <div class="col-md-6 col-md-offset-3">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Student Registration
+            </div>
+            <div class="panel-body">
+                {% csrf_token %}
+                    {% if errors %}
+                        <p><strong>{{ errors }}</strong></p>
+                    {% endif %}
+                    <form class="form-horizontal" role="form"  method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <fieldset>
+                        <div class="form-group">
+                            <div class="col-md-offset-2">
+                                {% if error %}
+                                    <h3 class="text-danger">{{ error }}</h3>
+                                {% else%}
+                                    &nbsp;
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="username" class="col-md-2 col-md-offset-1 control-label">Username</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" id="username" name="username" placeholder="Username" required/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="col-md-2 col-md-offset-1 control-label">Email</label>
+                            <div class="col-md-8">
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Email Id" required/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="sid" class="col-md-2 col-md-offset-1 control-label">Student Id</label>
+                            <div class="col-md-8">
+                                <input type="number" class="form-control" id="sid" name="sid" placeholder="Student Id" required/>
+                            </div>
+                        </div>
+
+
+                         <div class="form-group">
+                            <label for="pass" class="col-md-2 col-md-offset-1 control-label">Password</label>
+                            <div class="col-md-8">
+                                <input type="password" class="form-control" id="pass" name="password" placeholder="Password" required/>
+                            </div>
+                        </div>
+                            <label for="course" class="col-md-2 col-md-offset-1 control-label">Courses</label>
+                            <div class="checkbox">
+                                <label><input type="checkbox"  value="SE" id="course" name="courses">SE</label>
+
+                                <label><input type="checkbox" value="DBMS" id="course" name="courses" >DBMS</label>
+
+                                <label><input type="checkbox" value="CN" id="course" name="courses" >CN</label>
+
+                                <label><input type="checkbox" value="LP" id="course" name="courses">LP</label>
+
+                                <label><input type="checkbox" value="TC" id="course" name="courses">TC</label>
+
+                                <label><input type="checkbox" value="BIS" id="course" name="courses">BIS</label>
+                            <br>
+                            </div>
+                        <br>
+                        <div class="form-group">
+                            <label for="baddr" class="col-md-3 col-md-offset-1">Bluetooth Address</label>
+                            <div class="col-md-5">
+                                <select class="form-control" id="baddr"  name="baddr">
+                                    <option selected="selected">Select Bluetooth Address</option>
+                                    {% for key,value in dict.items  %}
+                                        <option value="{{ key }}">{{ key }} - {{ value }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-3 col-sm-10">
+                                <br>
+                                <button type="submit" class="btn btn-success">Submit</button>
+                            </div>
+                        </div>
+                      </fieldset>
+                    </form>
+                </div>
+                <div class="panel-footer">
+                    Already have an account? <a href="{% url 'student:slogin' %}">Click here</a> to log in.
+                </div>
+            </div>
+        </div>
+{% endblock %}
+
+
+

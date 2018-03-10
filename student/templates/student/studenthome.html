@@ -1,0 +1,88 @@
+{% extends 'student/base.html' %}
+{% block title %}Student Home{% endblock %}
+{% block body %}
+    <h3>Welcome {{ student.username }}</h3>
+    <br>
+    <div class="col-md-4 col-md-offset-1">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Total Attendance
+            </div>
+            <div class="panel-body">
+                 <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Course</th>
+                    <th>Classes Attended</th>
+                    <th>classes Conducted</th>
+                    <th>Percentage</th>
+                    <th> >75% </th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for key,value in dict.items %}
+                <tr>
+                <td>
+                    {{ key }}
+                </td>
+                <td>
+                    {{ value }}
+                </td>
+                <td>
+                    {% for j in f %}
+                            {% if key == j.course %}
+                                {{ j.count }}
+                            {% endif %}
+                        {% endfor %}
+                </td>
+                <td>
+                    {% for k,v in p.items %}
+                        {% if key == k %}
+                            {{ v }}
+                            <td>
+                            {% if v < 75 %}
+                                <p class="text-danger"><strong>Less than 75%</strong></p>
+                                {% endif %}
+                            </td>
+                        {% endif %}
+                        {% endfor %}
+                </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 col-md-offset-1">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Current Day Attendance
+            </div>
+            <div class="panel-body">
+                 <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Course</th>
+                    <th>Present(P)/Absent(A)/Class Not Taken(N)</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for key,value in ca.items %}
+                <tr>
+                <td>
+                    {{ key }}
+                </td>
+                <td>
+                    <div class="col-md-offset-3">
+                    {{ value }}
+                    </div>
+                </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

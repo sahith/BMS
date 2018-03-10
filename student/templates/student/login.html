@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% block title %}Student Login{% endblock %}
+{% block navbar %}
+    <nav id="mainNav" class="navbar navbar-inverse ">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="btn-primary navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="{% url 'home' %}">Home</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                     <li class="active">
+                        <a href="{% url 'student:home' %}" >
+                             Register
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="{% url 'student:slogin' %}" >
+                            <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp; Login
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+{% endblock %}
+{% block body %}
+    <div class="col-md-4 col-md-offset-3">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Student Login
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal" role="form"  method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <fieldset>
+                        <div class="form-group">
+                            <div class="col-md-offset-2">
+                                {% if error %}
+                                    <h3 class="text-danger">{{ error }}</h3>
+                                {% else%}
+                                    &nbsp;
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="sid" class="col-md-2 col-md-offset-1 control-label">Student Id</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" id="sid" name="sid" placeholder="Student ID" required/>
+                            </div>
+                        </div>
+                         <div class="form-group">
+                            <label for="pass" class="col-md-2 col-md-offset-1 control-label">Password</label>
+                            <div class="col-md-8">
+                                <input type="password" class="form-control" id="pass" name="password" placeholder="Password" required/>
+                            </div>
+                        </div>
+                         <div class="form-group">
+                            <div class="col-md-8 col-md-offset-3">
+                                <button type="submit" class="btn btn-primary">
+                                    Login
+                                </button>
+                            </div>
+                        </div>
+                            <div class="col-md-8 col-md-offset-3">
+                                <a href="{% url 'student:fpass' %}">Forgot Password</a>
+                            </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+
